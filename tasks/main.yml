@@ -1,0 +1,16 @@
+---
+# tasks file for nginx
+
+- include_tasks: install_debian.yml
+  when: (ansible_os_family|lower == 'debian')
+
+- include_tasks: install_redhat.yml
+  when: (ansible_os_family|lower == 'redhat')
+
+
+- name: Ensure nginx is started and enabled to start at boot.
+  service: name=nginx state=started enabled=yes
+
+
+
+
